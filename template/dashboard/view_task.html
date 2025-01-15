@@ -1,0 +1,556 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Add Task{% endblock %}
+
+{% block 'main' %}
+
+<style>
+    /* Styles for the task view */
+    .content-container {
+        padding: 20px;
+    }
+
+    .filters-statistics-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .filters {
+        flex: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .filter-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .filter-select, .date-input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .filter-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter-link {
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
+    .filter-link.status-pending {
+        background-color: #f44336; /* Red */
+    }
+
+    .filter-link.status-pending:hover {
+        background-color: #d32f2f;
+    }
+
+    .filter-link.status-in-progress {
+        background-color: #ffc107; /* Yellow */
+        color: #333;
+    }
+
+    .filter-link.status-in-progress:hover {
+        background-color: #ffb300;
+    }
+
+    .filter-link.status-completed {
+        background-color: #4caf50; /* Green */
+    }
+
+    .filter-link.status-completed:hover {
+        background-color: #388e3c;
+    }
+
+    .delete-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: #dc3545; /* Red/Danger color */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .delete-btn:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+    
+    .status {
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+        color: white;
+    }
+
+    /* Pending Status - Red (Danger) */
+    .status.pending {
+        color: #dc3545; /* Red (Danger) */
+    }
+
+    /* In Progress Status - Yellow (Warning) */
+    .status.in_progress {
+        color: #ffc107; /* Yellow (Warning) */
+        color: #333; /* Dark text for contrast */
+    }
+
+    /* Completed Status - Green (Success) */
+    .status.completed {
+        color: #28a745; /* Green (Success) */
+    }
+
+    .action-btn {
+        display: inline-block;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        background-color: #28a745;;
+        border-radius: 4px;
+        border: none;
+    }
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .create-task-btn {
+        background-color: #007bff; /* Blue */
+    }
+
+    .create-task-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .leave-management-btn {
+        background-color: #28a745; /* Green */
+    }
+
+    .leave-management-btn:hover {
+        background-color: #1e7e34;
+    }
+
+    .performance-review-btn {
+        background-color: #ffc107; /* Yellow */
+        color: #333;
+    }
+
+    .performance-review-btn:hover {
+        background-color: #e0a800;
+    }
+
+    .task-statistics {
+        flex: 1;
+    }
+
+    /* Styles for the task view */
+    .content-container {
+        padding: 20px;
+    }
+
+    .task-details-container {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .close-btn {
+        background-color: #f44336;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        background-color: #d32f2f;
+    }
+
+    /* Hide the task details section initially */
+    .task-details-container {
+        display: none;
+    }
+</style>
+
+
+<div class="content-container" style="margin-top: 100px;">
+    <!-- <h1>Task Management</h1> -->
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="sidebar bg-light shadow-sm p-3">
+
+                <ul class="sidebar-nav" id="sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard' %}">
+                            <i class="bi bi-grid"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li><!-- End Dashboard Nav -->
+            
+            <!-- Department Dropdown -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#department-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Department</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="department-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'create_department' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>Create Department</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'department' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>View Department</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <!-- Role Dropdown -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#role-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Role</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="role-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'create_role' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>Create Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_role' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>View</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <!-- Employee Dropdown -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Employee</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'create_employee' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>Create Employee</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_employee' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>View Employee</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            
+            <!-- Task -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#task-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Task</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="task-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'create_task' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>Create Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_task' %}">
+                            <i class="bi bi-circle"></i>
+                            <span>View Task</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="nav-heading">Pages</li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="users-profile.html">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-contact.html">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+            
+            
+                  
+            
+                  <!-- <ul class="navbar-nav ms-auto" style="margin-right: 50px;"> -->
+                    {% if user.is_authenticated %}
+                    <!-- Logout Option -->
+                    <li class="nav-item logout-link">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                {% else %}
+                    
+                   
+                
+                    <!-- Login Page Nav -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                {% endif %}
+                
+                <!-- </ul> -->
+                
+            
+                </ul>
+            
+            </aside><!-- End Sidebar -->
+            
+            
+          
+               
+        </div>
+
+    <!-- Action Buttons -->
+    <div class="col-md-9">
+        <h1>Task Management</h1>
+    <div class="action-buttons ">
+        <a href="{% url 'create_task' %}" class="action-btn create-task-btn">Create Task</a>
+        <a href="{% url 'leave_dashboard' %}" class="action-btn leave-management-btn">Leave Management</a>
+        <a href="{% url 'view_reviews' %}" class="action-btn performance-review-btn">Performance Review</a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if tasks_page.has_previous %}
+        <a href="?page={{ tasks_page.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ tasks_page.number }} of {{ tasks_page.paginator.num_pages }}</span>
+
+        {% if tasks_page.has_next %}
+        <a href="?page={{ tasks_page.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+
+    <!-- Task Table -->
+    <table class="task-table">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Employee Name</th>
+                <th>Task Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>See Details</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ task.assigned_to.first_name }} {{ task.assigned_to.last_name }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.start_date }}</td>
+                <td>{{ task.end_date }}</td>
+                <td>
+                    <button><a href="{% url 'task_details' task.task_id %}" class="see-more-btn">See Details</a>
+                    </button>
+                </td>                
+                <td>
+                    <span class="status {{ task.status|lower }}">{{ task.get_status_display }}</span>
+                </td>
+                <td>
+                    {% if task.task_id and task.status != "Completed" %}
+                    <form action="{% url 'mark_completed' task.task_id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="action-btn">Mark Completed</button>
+                    </form>
+                    {% else %}
+                    <span class="status completed">Completed</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="edit-btn"><a href="{% url 'update_task' task.task_id %}">Edit</a></button>
+                </td>
+                <td>
+                    <form action="{% url 'delete_task' task.task_id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this task?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">No tasks available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+    <!-- Filters and Task Statistics Container -->
+    <div class="filters-statistics-container">
+        <!-- Filters Section -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="employee-filter" class="filter-label">Filter By Employee:</label>
+                <select id="employee-filter" name="employee_filter" onchange="filterTasksByEmployee(this.value)" class="filter-select">
+                    <option value="">Select Employee</option>
+                    <option value="all">All</option>
+                    {% for task in tasks %}
+                    <option value="{{ task.assigned_to.id }}">{{ task.assigned_to.first_name }} {{ task.assigned_to.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filter By Status:</label>
+                <div class="filter-links">
+                    <a href="?status=pending" class="filter-link status-pending {% if request.GET.status == 'pending' %}active{% endif %}">Pending</a>
+                    <a href="?status=in_progress" class="filter-link status-in-progress {% if request.GET.status == 'in_progress' %}active{% endif %}">In Progress</a>
+                    <a href="?status=completed" class="filter-link status-completed {% if request.GET.status == 'completed' %}active{% endif %}">Completed</a>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filter by Date Range:</label>
+                <form method="get" action="" class="date-filter-form">
+                    <label for="start-date" class="date-label">From:</label>
+                    <input type="date" id="start-date" name="start_date" class="date-input" value="{{ request.GET.start_date }}">
+            
+                    <label for="end-date" class="date-label">To:</label>
+                    <input type="date" id="end-date" name="end_date" class="date-input" value="{{ request.GET.end_date }}">
+            
+                    <button type="submit" class="action-btn" id="date-filter-btn">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task Statistics Section -->
+        <div class="task-statistics">
+            <h3 class="statistics-title">Task Statistics</h3>
+            <ul class="statistics-list">
+                <li>Total Tasks: <strong>{{ tasks.count }}</strong></li>
+                <li style="color: green;">Completed: <strong>{{ completed_count }}</strong></li>
+                <li style="color: #ffc107;">In Progress: <strong>{{ in_progress_count }}</strong></li>
+                <li style="color: red;">Pending: <strong>{{ pending_count }}</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bar Graph -->
+    <div class="graph-container" style="margin-top: 30px;">
+        <h3>Task Statistics Graph</h3>
+        <canvas id="taskStatisticsChart" width="30" height="10"></canvas>
+    </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Bar Chart for Task Statistics
+  const ctx = document.getElementById('taskStatisticsChart').getContext('2d');
+    const taskStatisticsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Total', 'Completed', 'In Progress', 'Pending'],
+            datasets: [{
+                label: 'Task Count',
+                data: [{{ tasks.count }}, {{ completed_count }}, {{ in_progress_count }}, {{ pending_count }}],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)', // Total
+                    'rgba(75, 192, 192, 0.6)', // Completed
+                    'rgba(255, 205, 86, 0.6)', // In Progress
+                    'rgba(255, 99, 132, 0.6)'  // Pending
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    function filterTasksByEmployee(employeeId) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('employee_filter', employeeId);
+        window.location.href = url.href;
+    }
+
+</script>
+
+
+
+{% endblock 'main' %}

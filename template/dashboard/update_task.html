@@ -1,0 +1,181 @@
+
+
+
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}Edit Task{% endblock %}
+
+{% block 'main' %}
+
+
+    <div class="form-container" style="margin-top: 100px;">
+        <h1>Edit Task</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="title"><strong>Task Title:</strong></label>
+                <input type="text" id="title" name="title" value="{{ task.title }}" required placeholder="Enter task title">
+            </div>
+
+            <div class="form-group">
+                <label for="description"><strong>Description:</strong></label>
+                <textarea id="description" name="description" required placeholder="Enter task description">{{ task.description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="priority"><strong>Priority:</strong></label>
+                <select id="priority" name="priority" required>
+                    <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+                    <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                    <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="task_type"><strong>Task Type:</strong></label>
+                <select id="task_type" name="task_type" required>
+                    <option value="Individual" {% if task.task_type == 'Individual' %}selected{% endif %}>Individual</option>
+                    <option value="Team" {% if task.task_type == 'Team' %}selected{% endif %}>Team</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="start_date"><strong>Start Date:</strong></label>
+                <input type="date" id="start_date" name="start_date" value="{{ task.start_date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_date"><strong>End Date:</strong></label>
+                <input type="date" id="end_date" name="end_date" value="{{ task.end_date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status"><strong>Status:</strong></label>
+                <select id="status" name="status" required>
+                    <option value="Pending" {% if task.status == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                    <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="assigned_to"><strong>Assign To:</strong></label>
+                <select id="assigned_to" name="assigned_to" required>
+                    {% for employee in employees %}
+                        <option value="{{ employee.id }}" {% if employee.id == task.assigned_to.id %}selected{% endif %}>
+                            {{ employee.first_name }} {{ employee.last_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Update Task</button>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        .form-container {
+            /* border: 2px solid #4a90e2; */
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            margin: auto;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            width: 200px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        button.submit-btn {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button.submit-btn:hover {
+            background-color: #357ab7;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .messages .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            label {
+                width: auto;
+                margin-bottom: 5px;
+            }
+
+            input, select, textarea {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock 'main' %}

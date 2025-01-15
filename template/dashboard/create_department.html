@@ -1,0 +1,56 @@
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+    <style>
+        /* Custom styles for form centering */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa; /* Light gray background */
+            margin: 0;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bootstrap shadow */
+            width: 100%;
+            max-width: 500px; /* Limit width for larger screens */
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #343a40; /* Dark color for the title */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1 class="text-center">Department Management System</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="Department" class="form-label">Department Name</label>
+                <input type="text" class="form-control" id="Department" name="Department" placeholder="Enter department name">
+            </div>
+            <div class="mb-3">
+                <label for="Discriptions" class="form-label">Descriptions</label>
+                <input type="text" class="form-control" name="description" id="discription" placeholder="Enter description">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Create Department</button>
+        </form>
+    </div>
+
+   
+
+{% endblock 'main' %}

@@ -1,0 +1,89 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+
+<section class="registration-section " style="margin-top: 100px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <form class="registration-form shadow p-3 mb-5 bg-body rounded" action="{% url 'register' %}" method="post">
+          {% csrf_token %}
+          <h2 class="text-center">Registration</h2>
+          {% if error %}
+          <div class="alert alert-danger">
+            {{ error }}   
+          </div>
+          {% endif %}
+
+          <div class="form-group mb-3">
+            <label for="username" class="form-label">Username:</label> 
+            <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="email" class="form-label">Email Id:</label> 
+            <input type="email" class="form-control" id="email" placeholder="Enter a valid email address" name="email" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="confirmpassword" class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-danger w-100">Register</button>
+          </div><br>
+          <div class="form-group text-center">
+            Already a User? <a href="{% url 'login' %}" class="login-link">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section> 
+
+<!-- <section style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin-top: 120px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <form class="f1 shadow p-3 mb-5 bg-body rounded" action="{% url 'register' %}" method="post">
+          {% csrf_token %}
+          <h2 class="text-center">Registration</h2>
+          {% if error %}
+          <div class="alert alert-danger">
+            {{ error }}   
+          </div>
+          {% endif %}
+
+          <div class="di1 mb-3">
+            <label for="basic-addon1" class="form-label">Username:</label> 
+            <input type="text" class="form-control" id="basic-addon1" aria-describedby="addon-wrapping" placeholder="Enter Username" name="username" required>
+          </div>
+          <div class="di1 mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email Id:</label> 
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter a valid email address" name="email" required>
+          </div>
+          <div class="di1 mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+          </div>
+          <div class="di1 mb-3">
+            <label for="exampleInputPassword2" class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" name="confirmpassword" required>
+          </div>
+          <div class="di1 text-center">
+            <button type="submit" class="btn btn-danger w-100">Register</button>
+          </div><br>
+          <div class="di1 text-center">
+            Already a User? <a href="login.html" class="a2">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+{% endblock 'main' %}

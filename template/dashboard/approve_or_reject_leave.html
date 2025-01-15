@@ -1,0 +1,130 @@
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Approve/Reject Leave{% endblock %}
+
+
+{% block 'main' %}
+<div class="leave-request-container">
+    <h2 class="page-title">Approve or Reject Leave Request</h2>
+
+    <form method="POST" class="leave-form">
+        {% csrf_token %}
+        <div class="form-info">
+            <p><strong>Employee:</strong> {{ leave.employee.username }}</p>
+            <p><strong>Leave Type:</strong> {{ leave.get_leave_type_display }}</p>
+            <p><strong>Reason:</strong> {{ leave.reason }}</p>
+            <p><strong>Start Date:</strong> {{ leave.start_date }}</p>
+            <p><strong>End Date:</strong> {{ leave.end_date }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="action">Action:</label>
+            <select name="action" id="action" required>
+                <option value="approve">Approve</option>
+                <option value="reject">Reject</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{% url 'leave_dashboard_admin' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    .leave-request-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #4a90e2;
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+    .form-info p {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 12px;
+    }
+
+    .form-info strong {
+        font-weight: 600;
+        color: #4a90e2;
+    }
+
+    .leave-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group label {
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .form-group select {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        width: 100%;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group select:focus {
+        border-color: #4a90e2;
+        outline: none;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #4a90e2;
+    }
+
+    .btn-primary:hover {
+        background-color: #357ab7;
+    }
+
+    .btn-secondary {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    .btn-secondary:hover {
+        background-color: #e0e0e0;
+    }
+</style>
+
+{% endblock %}

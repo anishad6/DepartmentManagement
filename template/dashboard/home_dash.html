@@ -1,0 +1,268 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+
+
+<style>
+    /* Custom Font */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        color: #333;
+    }
+
+    /* Hero Section */
+    .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to right, #667eea, #764ba2); /* Gradient from left to right */
+            position: relative;
+        }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 30px;
+    }
+
+    .hero .btn {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border-radius: 30px;
+        background-color: #fda085;
+        border: none;
+        color: #fff;
+        transition: 0.3s;
+    }
+
+    .hero .btn:hover {
+        background-color: #ff8e6e;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Features Section */
+    .features {
+        background: #ffffff;
+        padding: 80px 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        margin-top: -50px;
+        border-radius: 25px;
+    }
+
+    .features h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 50px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #f9f9f9;
+        padding: 30px;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    .card .btn {
+        background-color: #667eea;
+        color: white;
+        font-weight: 600;
+        transition: background 0.3s ease;
+    }
+
+    .card .btn:hover {
+        background-color: #5b66d6;
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+        background-color: #667eea;
+        color: white;
+        padding: 60px 20px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .cta-section h3 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .cta-section .btn {
+        background-color: #fda085;
+        font-size: 1.5rem;
+        padding: 15px 40px;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-section .btn:hover {
+        background-color: #ff8e6e;
+    }
+
+    .messages {
+    display: flex;
+    justify-content: center; /* Centers messages horizontally */
+    align-items: center;    /* Centers messages vertically */
+    flex-direction: column; /* Stacks messages vertically */
+    margin-top: 20px;
+}
+
+.messages .alert {
+    max-width: 80%;         /* Restricts the message width */
+    text-align: center;     /* Centers the text inside the message */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+
+    /* Footer Section */
+    .footer {
+        background-color: #333;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        margin-top: 80px;
+    }
+
+    .footer a {
+        color: #fda085;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; /* Optional: To center content vertically */
+}
+
+.messages {
+    width: 100%; /* Ensures the messages container takes full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px; /* Adds space between messages */
+}
+
+.custom-message {
+    width: 100%; /* Ensures each message takes full width */
+    max-width: 600px; /* Optional: Limits the width for better readability */
+    text-align: center; /* Centers the text inside the message */
+    padding: 15px; /* Adds padding for better appearance */
+    background-color: #f8d7da; /* Light red background (danger style) */
+    color: #721c24; /* Dark red text color */
+    border: 1px solid #f5c6cb; /* Matches the alert style */
+    border-radius: 5px; /* Adds rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    font-size: 1rem; /* Adjusts text size */
+}
+
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+    <!-- {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %} -->
+<div class="container text-center">
+    <h1>Welcome to the Department Management System</h1>
+    <p>Effortlessly manage your organization’s departments, roles, and employees.</p>
+    <!-- <a href="/dashboard" class="btn">Go to Dashboard</a> -->
+</div>
+</div>
+
+
+<!-- Features Section -->
+<div class="features">
+<div class="container text-center">
+    <h2>What You Can Do</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card">
+                
+                <h5 class="card-title">Manage Departments</h5>
+                <p class="card-text">Create, update, and view all departments in your organization.</p>
+                <a href="{% url 'department' %}" class="btn">View Departments</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-title">Manage Roles</h5>
+                <p class="card-text">Assign roles and responsibilities to team members effectively.</p>
+                <a href="{% url 'view_role' %}" class="btn">View Roles</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-title">Manage Employees</h5>
+                <p class="card-text">Add and manage employee records effortlessly.</p>
+                <a href="{% url 'view_employee' %}"class="btn">View Employees</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Call to Action -->
+<div class="cta-section">
+<h3>Ready to Take Control?</h3>
+<p>Click below to access the dashboard and start managing your data today.</p>
+<a href="/dashboard" class="btn">Get Started</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,1375 @@
+<<<<<<< HEAD
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/*  Navbar Styling */
+ul.navbar-nav{
+    margin-left: auto;
+}
+.navbar {
+    background-color: #007bff;  
+}
+
+.navbar .nav-link {
+    font-size: 1.1rem;
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+.navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-item {
+    padding: 0 15px;
+}
+
+.navbar-brand.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif; /* Modern and clean font */
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #3A6351; /* Earthy green tone */
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Logo Icon */
+.logo-icon {
+    font-size: 2rem; /* Slightly larger than text */
+    margin-right: 0.5rem;
+    color: #0B3D91; /* Blue tone for Earth */
+    animation: rotate 3s infinite linear; /* Rotating effect */
+}
+
+/* Logo Text */
+.logo-text {
+    color: #3A6351;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.navbar-brand.logo:hover {
+    transform: scale(1.1);
+}
+
+.navbar-brand.logo:hover .logo-text {
+    color: #2A9D8F; /* Slightly brighter green on hover */
+}
+
+/* Icon Animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* .navbar-brand {
+    font-weight: 600;
+}
+.navbar-nav .nav-link {
+    font-size: 1rem;
+} */
+
+/*  */
+/* General Styles */
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-top: 2.1rem;
+}
+
+/* Centering Text in Carousel */
+.carousel-caption1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    color: white;
+    padding: 0 1rem;
+}
+
+/* Heading Styling */
+.carousel-caption1 h1 {
+    font-family:  sans-serif;
+    font-size: 3rem; /* Adjust font size */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Paragraph Styling */
+.carousel-caption1 p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 5rem; /* Adjust font size */
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.carousel-caption1 .btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .carousel-caption1 h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption1 p {
+        font-size: 1.25rem;
+    }
+
+    .carousel-caption1 .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-caption1 h1 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-caption1 p {
+        font-size: 1rem;
+    }
+
+    .carousel-caption1 .btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+
+/* Mission Section Styling */
+.mission {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 4rem 0; /* Add padding to top and bottom */
+    color: #333; /* Dark text for readability */
+}
+
+.mission-content {
+    max-width: 900px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 15px; /* Add some padding on left and right */
+}
+
+.mission h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #005b96; /* Dark blue color */
+    margin-bottom: 1rem; /* Add space below the heading */
+}
+
+.mission p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555; /* Slightly lighter color for the paragraph */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mission h2 {
+        font-size: 2rem; /* Slightly smaller heading for smaller screens */
+    }
+
+    .mission p {
+        font-size: 1rem; /* Smaller paragraph text */
+    }
+}
+
+@media (max-width: 576px) {
+    .mission h2 {
+        font-size: 1.5rem; /* Even smaller heading for extra small screens */
+    }
+
+    .mission p {
+        font-size: 0.9rem; /* Smaller paragraph text */
+    }
+}
+
+
+/* What we do  */
+.wrap-text-welcome {
+    background-color: #f7f7f7; /* Light background color */
+    padding: 3rem 1rem; /* Padding around the content */
+    text-align: center; /* Center the text */
+    color: #333; /* Text color */
+}
+
+/* Heading Style */
+.tit3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem; /* Font size for the heading */
+    font-weight: 700; /* Bold weight */
+    color: #005b96; /* Dark blue color */
+    margin-bottom: 1.5rem;
+}
+
+/* Paragraph Style */
+.description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555; /* Lighter gray color for the paragraph */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px; /* Limit the width for readability */
+    padding: 0 1rem; /* Add some padding on left and right */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tit3 {
+        font-size: 2rem; /* Adjust the heading size for smaller screens */
+    }
+
+    .description {
+        font-size: 1rem; /* Smaller text for paragraph */
+    }
+}
+
+@media (max-width: 576px) {
+    .tit3 {
+        font-size: 1.5rem; /* Further adjust the heading size for very small screens */
+    }
+
+    .description {
+        font-size: 0.9rem; /* Even smaller text for very small screens */
+    }
+}
+
+
+
+/* Row for the cards */
+.row-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* margin-left: 10rem; */
+    padding: 2rem;
+    width: 85rem;
+    margin: 0 auto; 
+}
+
+
+/* Card Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fa; /* Light background color for the card */
+    border: 1px solid #ddd; /* Light border for cards */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Circular Image Style */
+.card img {
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-top: 1px; /* Push image to top */
+    border: 4px solid #fff; /* White border around the image */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for image */
+}
+
+/* Card Body */
+.card-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Title and Description */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Hover Effects */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .row-card {
+        justify-content: center;
+    }
+    .col-md-3 {
+        flex: 0 0 48%; /* Cards take up 48% of the width on medium-sized screens */
+        max-width: 48%;
+    }
+    .col-sm-6 {
+        flex: 0 0 100%; /* Cards take up full width on smaller screens */
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card img {
+        width: 100px; /* Smaller size for image on very small screens */
+        height: 100px;
+    }
+    .card-title {
+        font-size: 1rem; /* Adjust title font size for smaller screens */
+    }
+    .card-text {
+        font-size: 0.9rem; /* Adjust text font size for smaller screens */
+    }
+}
+
+
+
+
+/* recent work  */
+
+.recent-works-section {
+    background-color: antiquewhite;
+    padding: 20px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Image Card Styles */
+.image-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-card:hover img {
+    transform: scale(1.1);
+}
+
+.time-blog {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.see-all{
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
+
+
+/* Journey Section Styles */
+.journey-section {
+    background-color: #f4f4f4; /* Light background color */
+    padding: 40px 0; /* Add padding for spacing */
+}
+
+/* Title and Heading */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Text Content */
+.section-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 2rem; /* Adjust heading size for smaller screens */
+    }
+
+    .section-text {
+        font-size: 1rem; /* Adjust text size for better readability */
+    }
+
+    .journey-section {
+        padding: 30px 15px; /* Adjust padding for smaller screens */
+    }
+}
+
+
+/* Team Section Styles */
+.team-section {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+
+.team-section h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.team-section .team-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Card Styles */
+.custom-card {
+    width: 18rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+}
+
+.card-img-top {
+    width: 255px;
+    height: 255px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: -75px;
+    position: relative;
+    z-index: 1;
+    margin: auto;
+}
+
+.card-body {
+    padding-top: 90px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-section h1 {
+        font-size: 2rem;
+    }
+
+    .card-img-top {
+        width: 200px;
+        height: 200px;
+    }
+
+    .card-body {
+        padding-top: 80px;
+    }
+
+    .custom-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Advisors Section */
+.advisors-section {
+    padding: 40px 0;
+    background-color: #f1f1f1;
+}
+
+.advisors-section .section-subtitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.advisors-section .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.advisors-section .card-body {
+    padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .advisors-section .section-title {
+        font-size: 2rem;
+    }
+
+    .card-img-top {
+        width: 200px;
+        height: 200px;
+    }
+
+    .advisors-section .card-body {
+        padding-top: 50px;
+    }
+}
+
+
+/* Get Involved Section Styles */
+
+.getInvolve h1{
+    background-color: #f1f1f1;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.get-involved-section {
+    background-color: #f9f9f9; /* Light grey background */
+}
+
+.get-involved-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.get-involved-lead {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 0;
+}
+
+/* Card Styles */
+.involved-card {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.involved-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.btn-custom {
+    background-color:blue;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .get-involved-title {
+        font-size: 2rem;
+    }
+
+    .get-involved-lead {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .get-involved-title {
+        font-size: 1.8rem;
+    }
+
+    .get-involved-lead {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* Carousel Section */
+.carousel-section {
+    margin-top: 56px;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.carousel-title {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Volunteer Section */
+.volunteer-section {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.volunteer-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.volunteer-header {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.volunteer-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.btn-volunteer {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-volunteer:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .carousel-title {
+        font-size: 2rem;
+    }
+
+    .volunteer-card {
+        padding: 20px;
+    }
+
+    .volunteer-header {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+/* donation.css */
+
+
+h1, h2, h3 {
+    color: #333;
+    font-weight: bold;
+}
+
+.container {
+    margin: 20px auto;
+    padding: 0 15px;
+    max-width: 1200px;
+}
+
+/* Carousel Section */
+.donation-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 75vh;
+    display: block;
+    object-fit: cover;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+}
+
+.carousel-quote {
+    font-size: 1.8rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+/* Donation Form Section */
+.donation-form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    margin: 17px auto;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Bank Details Section */
+.bank-details-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bank-header {
+    margin-bottom: 15px;
+}
+
+.bank-details p {
+    margin: 10px 0;
+}
+
+.email-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .donation-container .row {
+        flex-direction: column;
+    }
+
+    .donation-form-container,
+    .bank-details-container {
+        margin-bottom: 20px;
+    }
+}
+
+
+/* login.css */
+
+/* Center the login section */
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Style the login form */
+.login-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form fields */
+.login-form .form-group label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.login-form .form-control {
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+/* Style the sign-up link */
+.signup-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* Make the form responsive */
+@media (max-width: 768px) {
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-form h3 {
+        font-size: 1.5rem;
+    }
+
+    .login-form .form-group {
+        margin-bottom: 15px;
+    }
+}
+
+
+/* General Container Styles */
+.image-gallery-container {
+    margin-top: 100px;
+}
+
+.text-center h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.responsive-gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.3s ease, width 0.3s ease;
+    cursor: pointer;
+}
+
+/* Image Enlarge Effect */
+.responsive-gallery-img.enlarged {
+    /* margin: 50px auto; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    width: 50%;
+    height: auto;
+    z-index: 1000;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+}
+
+.image-details {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+    .text-center h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .responsive-gallery-img {
+        height: 200px;
+    }
+}
+
+/* Ensuring smooth responsiveness */
+@media (max-width: 576px) {
+    .gallery-card {
+        margin-bottom: 15px;
+    }
+}
+
+
+
+.container {
+    margin-top: 80px;
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #343a40;
+}
+
+label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.alert {
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 50px;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .btn-warning {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+
+
+
+
+
+/* Footer Styles */
+footer {
+    background-color: rgba(38, 37, 37, 0.323);
+    padding: 40px 0;
+    color: #f8f9fa;
+}
+
+/* Footer container */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.contact-us, .mission-vision {
+    flex: 1;
+    padding: 15px;
+}
+
+h4 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Icon styling */
+ul li img, .footer-container ul li i {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background-color: #343a40;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/* Hover effect for social media links */
+.footer-bottom a:hover {
+    color: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-us, .mission-vision {
+        margin-bottom: 20px;
+    }
+
+    .footer-bottom p {
+        font-size: 0.9rem;
+=======
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    flex-direction: column; /* Default for small screens */
+}
+
+@media (min-width: 768px) {
+    body {
+        flex-direction: row; /* Sidebar and content side-by-side on larger screens */
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    color: #ecf0f1;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background-color: #34495e;
+}
+
+/* Main Content Area */
+.content {
+    flex: 1;
+    padding: 40px;
+    background-color: #ecf0f1;
+    overflow-x: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #bdc3c7;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #2980b9;
+    color: white;
+}
+
+/* Button Styling */
+button {
+    background-color: #27ae60;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+button:hover {
+    background-color: #2ecc71;
+}
+
+button.delete {
+    background-color: #e74c3c;
+}
+
+button.delete:hover {
+    background-color: #c0392b;
+}
+
+/* Form Styling (shared for add and update) */
+.form-container {
+    border: 2px solid #4a90e2;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.form-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input[type="text"], input[type="submit"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #357ab7;
+}
+
+/* Responsiveness for Small Screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .content {
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 6px 10px;
+    }
+
+    .sidebar a {
+        padding: 8px;
+>>>>>>> 7d05aafba45da572b571b41ef391e6dab15dcc01
+    }
+}

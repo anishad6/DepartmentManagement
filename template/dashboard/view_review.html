@@ -1,0 +1,383 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}View Review {% endblock %}
+
+{% block 'main' %}
+
+<style>
+    /* General Styling */
+.content-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.create-review-btn {
+    background-color: #28a745;
+}
+
+.create-review-btn:hover {
+    background-color: #218838;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+.table-container {
+    margin-top: 30px;
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.review-table th, .review-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.review-table th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.review-table td {
+    background-color: #fff;
+}
+
+.review-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons in Table */
+.see-comments-btn,
+.edit-btn,
+.delete-btn {
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.see-comments-btn {
+    background-color: #ffc107;
+}
+
+.edit-btn {
+    background-color: #007bff;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.see-comments-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #333;
+}
+
+/* Filters Section */
+.filters {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.filter-label {
+    font-size: 1rem;
+    color: #333;
+}
+/* Container for the two tables side by side */
+.statistics-tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Adjust the gap between the two tables */
+    margin-top: 20px;
+}
+
+/* Style for individual statistics tables */
+.statistics-table {
+    width: 48%; /* Adjust width to allow tables to fit side by side */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Styling for table header and cells */
+.statistics-table th, .statistics-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.statistics-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: black;
+}
+
+.statistics-table tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+/* Optional: Adjust height of row if necessary */
+.statistics-table th, .statistics-table td {
+    min-width: 150px;
+}
+
+</style>
+<div class="content-container">
+    <h1 class="section-title">Review Management</h1>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <a href="{% url 'add_review' %}" class="action-btn create-review-btn">Add Review</a>
+        <a href="{% url 'view_task' %}" class="action-btn task-management-btn">Task Management</a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if reviews_page.has_previous %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ reviews_page.previous_page_number }}" class="pagination-btn">Previous</a>
+        {% endif %}
+        
+        <span>Page {{ reviews_page.number }} of {{ reviews_page.paginator.num_pages }}</span>
+        
+        {% if reviews_page.has_next %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ reviews_page.next_page_number }}" class="pagination-btn">Next</a>
+        {% endif %}
+    </div>
+
+    <!-- Review Table -->
+    <div class="table-container">
+        <table class="review-table">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Employee Name</th>
+                    <th>Review Title</th>
+                    <th>Review Date</th>
+                    <th>Review Period</th>
+                    <th>Rating</th>
+                    <th>Comments</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews_page %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ review.employee.first_name }} {{ review.employee.last_name }}</td>
+                        <td>{{ review.review_title }}</td>
+                        <td>{{ review.review_date }}</td>
+                        <td>{{ review.review_period }}</td>
+                        <td>{{ review.rating }}</td>
+                        <td>
+                            <a href="{% url 'see_comments' review.review_id %}" class="see-comments-btn">Click to See</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'edit_review' review.review_id %}" class="edit-btn">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{% url 'delete_review' review.review_id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9">No reviews available</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters">
+        <form method="get" action="" class="filters-form">
+            <div class="filter-group">
+                <label for="employee-filter" class="filter-label">Filter By Employee:</label>
+                <select id="employee-filter" name="employee_filter" class="filter-select">
+                    <option value="">Select Employee</option>
+                    {% for employee in employees %}
+                    <option value="{{ employee.employee_id }}" {% if request.GET.employee_filter == employee.employee_id %}selected{% endif %}>
+                        {{ employee.first_name }} {{ employee.last_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filter By Period:</label>
+                <select name="review_period" class="filter-select">
+                    <option value="">All Periods</option>
+                    <option value="monthly" {% if request.GET.review_period == "monthly" %}selected{% endif %}>Monthly</option>
+                    <option value="quarterly" {% if request.GET.review_period == "quarterly" %}selected{% endif %}>Quarterly</option>
+                    <option value="annual" {% if request.GET.review_period == "annual" %}selected{% endif %}>Annual</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filter by Date Range:</label>
+                <div class="date-filter">
+                    <label for="start-date" class="date-label">From:</label>
+                    <input type="date" id="start-date" name="start_date" value="{{ request.GET.start_date }}">
+                    <label for="end-date" class="date-label">To:</label>
+                    <input type="date" id="end-date" name="end_date" value="{{ request.GET.end_date }}">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filter by Rating:</label>
+                <select name="rating" class="filter-select">
+                    <option value="">All Ratings</option>
+                    <option value="1-5" {% if request.GET.rating == "1-5" %}selected{% endif %}>Between 1-5</option>
+                    <option value="6-8" {% if request.GET.rating == "6-8" %}selected{% endif %}>Between 6-8</option>
+                    <option value="9+" {% if request.GET.rating == "9+" %}selected{% endif %}>Above 9</option>
+                </select>
+            </div>
+
+            <button type="submit" class="action-btn apply-filters-btn">Apply Filters</button>
+        </form>
+    </div>
+<!-- Statistics Section -->
+<div class="statistics">
+    <h3 class="statistics-title">Statistics</h3>
+    
+    <!-- Flexbox Container for Two Tables -->
+    <div class="statistics-tables-container">
+        
+        <!-- First Table: Period-wise Number of Reviews -->
+        <table class="statistics-table">
+            <thead>
+                <tr>
+                    <th>Period</th>
+                    <th>Number of Reviews</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly</td>
+                    <td>{{ monthly_count }}</td>
+                </tr>
+                <tr>
+                    <td>Quarterly</td>
+                    <td>{{ quarterly_count }}</td>
+                </tr>
+                <tr>
+                    <td>Annual</td>
+                    <td>{{ annual_count }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Second Table: Number of Employees by Rating Range -->
+        <table class="statistics-table">
+            <thead>
+                <tr>
+                    <th>Rating Range</th>
+                    <th>Number of Employees</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1-5</td>
+                    <td>{{ range_1_5_employees }}</td> <!-- Display number of employees with reviews in range 1-5 -->
+                </tr>
+                <tr>
+                    <td>6-8</td>
+                    <td>{{ range_6_8_employees }}</td> <!-- Display number of employees with reviews in range 6-8 -->
+                </tr>
+                <tr>
+                    <td>9+</td>
+                    <td>{{ range_9_plus_employees }}</td> <!-- Display number of employees with reviews in range 9+ -->
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+</div>
+
+{% endblock 'main' %}

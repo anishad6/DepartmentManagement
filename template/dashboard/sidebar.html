@@ -1,0 +1,156 @@
+{% load static %}
+
+<!-- ======= Sidebar ======= -->
+
+
+<aside id="sidebar" class="sidebar bg-light shadow-sm p-3">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'dashboard' %}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+<!-- Department Dropdown -->
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#department-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Department</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="department-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="{% url 'create_department' %}">
+                <i class="bi bi-circle"></i>
+                <span>Create Department</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'department' %}">
+                <i class="bi bi-circle"></i>
+                <span>View Department</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<!-- Role Dropdown -->
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#role-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Role</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="role-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="{% url 'create_role' %}">
+                <i class="bi bi-circle"></i>
+                <span>Create Role</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'view_role' %}">
+                <i class="bi bi-circle"></i>
+                <span>View</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<!-- Employee Dropdown -->
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Employee</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="{% url 'create_employee' %}">
+                <i class="bi bi-circle"></i>
+                <span>Create Employee</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'view_employee' %}">
+                <i class="bi bi-circle"></i>
+                <span>View Employee</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+<!-- Task -->
+
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#task-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Task</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="task-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="{% url 'create_task' %}">
+                <i class="bi bi-circle"></i>
+                <span>Create Task</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'view_task' %}">
+                <i class="bi bi-circle"></i>
+                <span>View Task</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-heading">Pages</li>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="users-profile.html">
+        <i class="bi bi-person"></i>
+        <span>Profile</span>
+    </a>
+</li><!-- End Profile Page Nav -->
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="pages-contact.html">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+    </a>
+</li><!-- End Contact Page Nav -->
+
+
+      
+
+      <!-- <ul class="navbar-nav ms-auto" style="margin-right: 50px;"> -->
+        {% if user.is_authenticated %}
+        <!-- Logout Option -->
+        <li class="nav-item logout-link">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
+    {% else %}
+        
+       
+    
+        <!-- Login Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+            </a>
+        </li>
+    {% endif %}
+    
+    <!-- </ul> -->
+    
+
+    </ul>
+
+</aside><!-- End Sidebar -->
+

@@ -1,0 +1,137 @@
+
+
+<style>
+    /* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #a8edea, #fed6e3); /* Gradient background */
+  font-family: 'Poppins', sans-serif; /* Clean, modern font */
+  color: #333;
+}
+
+.otp-verification-section {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 100%;
+}
+
+/* Form Styles */
+.otp-verification-form {
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  padding: 2rem;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deep shadow for pop-out effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.otp-verification-form:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+}
+
+/* Heading */
+.otp-verification-form h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #444;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Labels */
+.otp-verification-form label {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* Input Fields */
+.otp-verification-form input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  padding: 0 1rem;
+  background: #f1f1f1;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.otp-verification-form input:focus {
+  background: #fff;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Submit Button */
+.otp-verification-form .btn-warning {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient button */
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.otp-verification-form .btn-warning:hover {
+  background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Reverse gradient on hover */
+  box-shadow: 0 6px 10px rgba(255, 126, 95, 0.5);
+  transform: translateY(-3px);
+}
+
+/* Alert Messages */
+.alert {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  padding: 0.8rem;
+}
+
+.alert-success {
+  background: rgba(72, 199, 116, 0.2);
+  color: #48c774;
+}
+
+.alert-danger {
+  background: rgba(255, 56, 96, 0.2);
+  color: #ff3860;
+}
+
+</style>
+<section class="otp-verification-section">
+    <div class="container">
+      <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-md-6 col-lg-4">
+          <form class="otp-verification-form shadow p-4 rounded" method="POST">
+            {% csrf_token %}
+            <h3 class="text-center mb-4">Enter OTP</h3>
+  
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+  
+            <div class="form-group mb-3">
+              <label for="otp">OTP:</label>
+              <input type="text" class="form-control" name="otp" id="otp" required>
+            </div>
+  
+            <button type="submit" class="btn btn-warning w-100 mt-2">Verify OTP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

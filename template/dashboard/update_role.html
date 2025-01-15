@@ -1,0 +1,58 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block 'main' %}
+    <style>
+      /* Custom Styling */
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa; /* Light gray background */
+      }
+
+      .form-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .btn1 a {
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .btn1 a:hover {
+        text-decoration: underline;
+      }
+    </style>
+
+    <div class="container form-container">
+      <h1 class="text-center mb-4">Department Management System</h1>
+      <div class="btn1 text-center">
+        <a href="/dashboard/create_role">Create Role</a>
+      </div>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="Department" class="form-label">Department Name</label>
+          <input type="text" class="form-control" id="Department" name="name" placeholder="Enter Role name" value="{{ role.name }}">
+        </div>
+        <div class="mb-3">
+          <label for="Descriptions" class="form-label">Descriptions</label>
+          <input type="text" class="form-control" name="description" id="Descriptions" placeholder="Enter descriptions" value="{{ role.description }}">
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+      </form>
+    </div>
+
+ {% endblock %}

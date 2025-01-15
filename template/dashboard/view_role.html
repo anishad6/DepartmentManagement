@@ -1,0 +1,132 @@
+
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+
+{% block 'main' %}
+
+<style>
+    /* General Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    padding: 20px;
+}
+
+.heading {
+    color: #343a40;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Table Styling */
+.table {
+    margin: auto;
+    background-color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-bordered th,
+.table-bordered td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-dark th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Buttons */
+.btn-warning {
+    color: #fff;
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+
+    
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+}
+
+/* Responsive Table */
+.table-responsive {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+</style>
+
+<div class="container my-5">
+    <h1 class="text-center mt-5">Department Management System</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+           
+        </div>
+
+        <div class="col-md-9">
+            <!-- Responsive Table -->
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Sr. No</th>
+                            <th>Department Role</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for roles in role %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ roles.name }}</td>
+                            <td>{{ roles.description }}</td>
+                            <td>
+                                <a href="{% url 'update_role' roles.role_id %}" class="btn btn-warning btn-sm">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'confirm_delete' roles.role_id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock 'main' %}
+
+

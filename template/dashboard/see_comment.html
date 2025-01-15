@@ -1,0 +1,70 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}See Comments - Department Management System{% endblock %}
+
+{% block 'main' %}
+<style>
+    .review-details {
+        padding: 20px;
+        background-color: #E8F9FF;
+        border-radius: 5px;
+        position: absolute;
+        left: 500px;
+    }
+
+    .review-details h1 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .review-details h2 {
+        color: #4caf50;
+        font-size: 24px;
+    }
+
+    .review-details p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .review-details p strong {
+        color: #333;
+    }
+
+    .back-btn {
+        padding: 10px 20px;
+        background-color: #70de73;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        justify-content: center;
+    }
+
+    .back-btn:hover {
+        background-color: #3e8e41;
+        
+    }
+</style>
+
+
+
+    <div class="review-details" style="margin-top: 100px;">
+        <h1>Review Details</h1>
+        
+        <h2>{{ review.review_title }}</h2>
+        <p><strong>Employee Name:</strong> {{ review.employee.first_name }} {{ review.employee.last_name }}</p>
+        <p><strong>Review Date:</strong> {{ review.review_date }}</p>
+        <p><strong>Review Period:</strong> {{ review.review_period }}</p>
+        <p><strong>Rating:</strong> {{ review.rating }}</p>
+
+        <p><strong>Comments:</strong> {% if review.comments %}{{ review.comments }}{% else %}No comments available.{% endif %}</p>
+        
+        <br>
+        <a href="{% url 'view_reviews' %}" class="back-btn">Back to Reviews</a>
+    </div>
+{% endblock 'main' %}
+

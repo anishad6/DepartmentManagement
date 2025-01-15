@@ -1,0 +1,185 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Add Review {% endblock %}
+
+{% block 'main' %}
+
+<style>
+    .form-container {
+        /* border: 2px solid #4a90e2; */
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        margin: auto;
+    }
+
+    .form-container h1 {
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        width: 200px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    input, select, textarea {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 80px;
+    }
+
+    button.submit-btn {
+        background-color: #4a90e2;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+    button.submit-btn:hover {
+        background-color: #357ab7;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .messages .error {
+        color: red;
+        font-weight: bold;
+    }
+
+    .back-btn {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #4a90e2;
+        text-decoration: none;
+    }
+
+    .back-btn:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            width: 90%;
+        }
+
+        .form-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            width: auto;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+        }
+    }
+</style>
+    <div class="form-container" style="margin-top: 100px;">
+        <h1>Add Review</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="{% url 'add_review' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="employee"><strong>Employee:</strong></label>
+                <select name="employee_id" id="employee" required>
+                    <option value="" disabled selected>Select Employee</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee.employee_id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rating"><strong>Rating:</strong></label>
+                <div class="slider-container">
+                    <input type="range" name="rating" id="rating" min="1" max="10" value="5" required>
+                    <span id="rating-value">5</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="review_period"><strong>Review Period:</strong></label>
+                <select name="review_period" id="review_period" required>
+                    {% for period, label in review_periods %}
+                        <option value="{{ period }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="review_title"><strong>Review Title:</strong></label>
+                <input type="text" name="review_title" id="review_title" required placeholder="Enter review title">
+            </div>
+
+            <div class="form-group">
+                <label for="comments"><strong>Comments:</strong></label>
+                <textarea name="comments" id="comments" rows="4" placeholder="Enter additional comments"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="review_date"><strong>Review Date:</strong></label>
+                <input type="date" name="review_date" id="review_date" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Add Review</button>
+            </div>
+        </form>
+
+        <a href="{% url 'view_reviews' %}" class="back-btn">Back to Reviews</a>
+    </div>
+
+    <script>
+        // Update the rating value as the slider moves
+        const ratingSlider = document.getElementById('rating');
+        const ratingValue = document.getElementById('rating-value');
+        
+        ratingSlider.addEventListener('input', function() {
+            ratingValue.textContent = ratingSlider.value;
+        });
+    </script>
+
+   
+{% endblock 'main' %}

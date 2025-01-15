@@ -1,0 +1,170 @@
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Apply for Leave{% endblock %}
+
+
+{% block 'main' %}
+
+<style>
+    /* Background Gradient for the page */
+    body {
+        background: linear-gradient(45deg, #6a11cb, #FFFAEC);
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Apply Leave Container */
+    .apply-leave-container {
+        max-width: 600px;
+        margin: 10px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    {% comment %} .apply-leave-container:hover {
+        transform: scale(1.05);
+    } {% endcomment %}
+
+    .apply-leave-container h2 {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 20px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    /* Back Button */
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #2575fc;
+        transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+        color: #6a11cb;
+    }
+
+    /* Form Elements */
+    .leave-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+    }
+
+    .form-group select:focus,
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #2575fc;
+        box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+        padding: 14px 24px;
+        font-size: 18px;
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+        width: 100%;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(45deg, #2575fc, #6a11cb);
+        transform: translateY(-4px);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .apply-leave-container {
+            padding: 20px;
+        }
+
+        .apply-leave-container h2 {
+            font-size: 22px;
+        }
+    }
+</style>
+
+<div class="apply-leave-container" style="margin-top: 100px;">
+    <h2>Apply for Leave</h2>
+
+    <!-- Back Button -->
+    <!-- <a href="javascript:history.back()" class="back-btn">&#8592; Back</a> -->
+
+    <form method="POST" class="leave-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="leave_type">Leave Type:</label>
+            <select name="leave_type" id="leave_type" required>
+                <option value="PL" {% if remaining_leave_quotas.Privilege_Leave <= 0 %}disabled{% endif %}>Privilege Leave</option>
+                <option value="CL" {% if remaining_leave_quotas.Casual_Leave <= 0 %}disabled{% endif %}>Casual Leave</option>
+                <option value="SL" {% if remaining_leave_quotas.Sick_Leave <= 0 %}disabled{% endif %}>Sick Leave</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="reason">Reason:</label>
+            <textarea name="reason" id="reason" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <!-- Back Button -->
+    
+    <a href="javascript:history.back()" class="back-btn" style="margin-top: 40px;">&#8592; Back</a>
+</div>
+
+{% endblock 'main' %}

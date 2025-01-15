@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="container mt-5">
+  <h1 class="text-center text-danger">Delete Employee</h1>
+  <p class="text-center">Are you sure you want to delete <strong>{{ employee.first_name }} {{ employee.last_name }}</strong>?</p>
+  <div class="text-center">
+      <form method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Yes, Delete</button>
+          <a href="{% url 'view_employee' %}" class="btn btn-secondary">Cancel</a>
+      </form>
+  </div>
+</div>
+
+  {% endblock %}

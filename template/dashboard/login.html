@@ -1,0 +1,131 @@
+
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+
+
+<section class="login-section" style="margin-top: 100px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <form class="login-form shadow p-4 rounded" action="" method="POST">
+          {% csrf_token %}
+
+          {% if success %}
+          <div class="alert alert-success">
+            {{ success }}
+          </div>
+          {% endif %}
+
+          {% if error %}
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+          {% endif %}
+<!-- ------------------------------------------------- -->
+          <h3 class="text-center">Login</h3>
+          {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+                  <p class="alert alert-danger">{{ message }}</p>
+              {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="form-group mb-3">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" name="username" id="username">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" id="password">
+          </div>
+
+          <input type="submit" class="btn btn-warning w-100 mt-2" value="Login">
+
+          <div class="text-center mt-3">
+            <a href="/dashboard/forgot-password" class="forgot-password-link">Forgot Password?</a>
+          </div>
+
+          <!-- <div class="text-center mt-3">
+            Not a user? <a href="/dashboard/register" class="signup-link">Sign Up</a>
+          </div> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="login-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <form class="login-form shadow p-4 rounded" action="" method="POST">
+          {% csrf_token %}
+          
+          {% if success %}
+          <div class="alert alert-success">
+            {{success}}
+          </div>
+          {% endif %}
+          
+          {% if error %}
+          <div class="alert alert-danger">
+            {{error}}
+          </div>
+          {% endif %}
+          
+          <h3 class="text-center">Login</h3>
+          
+          <div class="form-group mb-3">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" name="username" id="username">
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" id="password">
+          </div>
+          
+          <input type="submit" class="btn btn-warning w-100 mt-2" value="Login">
+          
+          <div class="text-center mt-3">
+            Not a user? <a href="/register" class="signup-link">Sign Up</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>  -->
+<!-- <form action="" method="POST" class="col-md-4 mx-auto mt-5 shadow rounded p-2">
+  {% csrf_token %}
+  {% if success %}
+  <div class="alert alert-success">
+    {{success}}
+  </div>
+  {% endif %}
+  
+  {% if error %}
+  <div class="alert alert-danger">
+    {{error}}
+  </div>
+  {% endif %}
+    <h3>Login</h3>
+    <div class="form-group">
+       <label >Username:</label>
+       <input type="text" class="form-control" name="username">
+     </div>
+     <div class="form-group">
+       <label >Password:</label>
+       <input type="password" class="form-control" name="password" >
+     </div>
+     <input type="submit" class=" mt-2 btn btn-warning" value="Login">
+     &nbsp; &nbsp;
+     Not a user? <a href="/register">Sign Up</a> 
+ </form> -->
+
+ {% endblock 'main' %}
